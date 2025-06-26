@@ -33,7 +33,7 @@ npm run exec
 - Module 7: Using Local LLMs
 - Module 8: Vector/Embedding Search
 
-#### Food for thought
+### Food for thought
 ![Context Engineering Karpathy](./karpathy.png)
 ![Context Engineering Ethan](./ethan.png)
 
