@@ -62,4 +62,4 @@ Other popular frameworks for working with LLMs include [LangChain](https://www.l
 - [Matt Pocock's AI SDK](https://www.aihero.dev/vercel-ai-sdk-tutorial)
 - [Vercel AI SDK Masterclass: From Fundamentals to Deep Research](https://www.youtube.com/watch?v=kDlqpN1JyIw)
 - [Ethan's Tweet](https://x.com/emollick/status/1937952769513517328)
-- [Karpathy's Tweet](https://x.com/karpathy/status/1937952769513517328)
+- [Karpathy's Tweet](https://x.com/karpathy/status/1937902205765607626)
