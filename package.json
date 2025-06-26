@@ -1,0 +1,25 @@
+{
+  "name": "ai-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "exec": "tsx index.ts",
+    "dev": "tsx watch index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ai-sdk/openai": "^1.3.22",
+    "@ai-sdk/openai-compatible": "^0.2.14",
+    "ai": "^4.3.16",
+    "dotenv": "^16.5.0",
+    "zod": "^3.25.67"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.4",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
+}
