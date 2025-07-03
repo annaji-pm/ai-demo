@@ -63,3 +63,6 @@ Other popular frameworks for working with LLMs include [LangChain](https://www.l
 - [Vercel AI SDK Masterclass: From Fundamentals to Deep Research](https://www.youtube.com/watch?v=kDlqpN1JyIw)
 - [Ethan's Tweet](https://x.com/emollick/status/1937952769513517328)
 - [Karpathy's Tweet](https://x.com/karpathy/status/1937902205765607626)
+- [Vercel AI Tool Calling and agents workshop](https://aie-feb-25.vercel.app/docs/tools)
+- [Simon Willison's React AI AgentPattern](https://til.simonwillison.net/llms/python-react-pattern)
+- [Amp Code How to build an AI Agent](https://ampcode.com/how-to-build-an-agent)

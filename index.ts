@@ -1,6 +1,6 @@
 import { CoreMessage, streamText, generateText } from 'ai';
 import dotenv from 'dotenv';
-import { ModuleOne, ModuleTwo, ModuleThree, ModuleFour, ModuleFive, ModuleSix, ModuleSeven, ModuleEight } from './modules';
+import { ModuleOne, ModuleTwo, ModuleThree, ModuleFour, ModuleFive, ModuleSix, ModuleSeven, ModuleEight, ModuleNine, ModuleTen, ModuleEleven } from './modules';
 
 dotenv.config();
 
@@ -17,9 +17,12 @@ async function main() {
   // await ModuleThree();
   // await ModuleFour();
   // await ModuleFive();
-  await ModuleSix();
+  // await ModuleSix();
   // await ModuleSeven();
   // await ModuleEight();
+  // await ModuleNine();
+  // await ModuleTen();
+  await ModuleEleven();
 
 }
 

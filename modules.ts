@@ -1,5 +1,5 @@
 import { openai } from '@ai-sdk/openai';
-import { CoreMessage, cosineSimilarity, embed, embedMany, generateObject, generateText, streamText } from "ai";
+import { CoreMessage, cosineSimilarity, embed, embedMany, generateObject, generateText, streamText, tool } from "ai";
 import { readFileSync } from 'fs';
 import path from 'path';
 import * as readline from 'node:readline/promises';
@@ -269,3 +269,106 @@ export const ModuleEight = async (
   console.dir(sortedEntries, { depth: null });
 };
 
+/*
+ * Module 9: Function and Tool Calling
+ */
+export const ModuleNine = async (
+  prompt: string = "What's 13 + 5?",
+) => {
+
+    const addNumbers = tool({
+      description: "Add two numbers together",
+      parameters: z.object({
+        num1: z.number(),
+        num2: z.number(),
+      }),
+      execute: async ({ num1, num2 }) => {
+        return num1 + num2;
+      },
+    });
+
+  const result = await generateText({
+    model,
+    prompt,
+    tools: {
+      addNumbers,
+    },
+  });
+  console.log(result.toolResults);
+};
+
+/*
+ * Module 10: Tool Calling with Max Steps (Feeding the model with the result of the previous step)
+ */
+export const ModuleTen = async () => {
+  const result = await generateText({
+    model,
+    prompt: "What's 13 + 5?",
+    // This is the number of steps the model can take to solve the problem.
+    // Maximum number of sequential LLM calls (steps), e.g. when you use tool calls. Must be at least 1.
+    // A maximum number is required to prevent infinite loops in the case of misconfigured tools.
+    // By default, it's set to 1, which means that only a single LLM call is made.
+    maxSteps: 2,
+    tools: {
+      addNumbers: tool({
+        description: "Add two numbers together",
+        parameters: z.object({
+          num1: z.number(),
+          num2: z.number(),
+        }),
+        execute: async ({ num1, num2 }) => {
+          return num1 + num2;
+        },
+      }),
+    },
+  });
+  console.log(result.steps.length);
+  console.log(result.text);
+};
+
+
+/*
+ * Module 11: Tool Calling with multiple steps
+ */
+export const ModuleEleven = async () => {
+  const result = await generateText({
+    model,
+    prompt: "Get the weather in Toronto and Campbell River BC, then add them together.",
+    maxSteps: 3,
+    tools: {
+      addNumbers: tool({
+        description: "Add two numbers together",
+        parameters: z.object({
+          num1: z.number(),
+          num2: z.number(),
+        }),
+        execute: async ({ num1, num2 }) => {
+          return num1 + num2;
+        },
+      }),
+      getWeather: tool({
+        description: "Get the current weather at a location",
+        parameters: z.object({
+          latitude: z.number(),
+          longitude: z.number(),
+          city: z.string(),
+        }),
+        execute: async ({ latitude, longitude, city }) => {
+          const response = await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weathercode,relativehumidity_2m&timezone=auto`,
+          );
+ 
+          const weatherData = await response.json();
+          return {
+            temperature: weatherData.current.temperature_2m,
+            weatherCode: weatherData.current.weathercode,
+            humidity: weatherData.current.relativehumidity_2m,
+            city,
+          };
+        },
+      }),
+    },
+  });
+  console.log(result.steps.length)
+  console.log(result.text);
+};
